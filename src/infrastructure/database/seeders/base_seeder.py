@@ -1,9 +1,8 @@
 import logging
 import sys
 from abc import ABC, abstractmethod
-from typing import Optional
 
-from colorama import init, Fore, Style
+from colorama import Fore, Style, init
 from faker import Faker
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -27,6 +26,7 @@ class BaseSeeder(ABC):
         """Execute seeding process.Must be implemented by derived classes."""
 
     async def clear_table(self, model: type[DeclarativeBase]) -> None:
+        """Докстринг."""
         await self.session.execute(delete(model))
         await self.session.commit()
         self.log(f"Cleared {model.__tablename__}")
@@ -44,7 +44,7 @@ class BaseSeeder(ABC):
         console_handler.setLevel(logging.INFO)
 
         formatter = logging.Formatter(
-            f"{Fore.GREEN}%(name)s{Style.RESET_ALL} - " f"%(message)s",
+            f"{Fore.GREEN}%(name)s{Style.RESET_ALL} - %(message)s",
         )
 
         console_handler.setFormatter(formatter)
@@ -53,7 +53,7 @@ class BaseSeeder(ABC):
 
         return logger
 
-    def log(self, message: str, level: Optional[str] = "info") -> None:
+    def log(self, message: str, level: str | None = "info") -> None:
         """Log messages with specified level and colors."""
         if level == "info":
             message = f"{Fore.WHITE}{message}{Style.RESET_ALL}"

@@ -7,11 +7,11 @@ from src.infrastructure.database.models.profile_model import Profile
 from src.infrastructure.database.models.user_model import User
 
 __all__ = [
-    'User',
-    'Profile',
-    'Organizer',
-    'Event',
-    'Category',
-    'Location',
-    'EventRegistration',
+    "User",
+    "Profile",
+    "Organizer",
+    "Event",
+    "Category",
+    "Location",
+    "EventRegistration",
 ]

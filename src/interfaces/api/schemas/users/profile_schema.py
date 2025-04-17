@@ -6,7 +6,7 @@ from src.interfaces.api.schemas.base_dto import BasePydanticModel
 from src.interfaces.api.schemas.custom_types import BasicString
 
 
-class ProfileBase(BasePydanticModel):
+class ProfileSchema(BasePydanticModel):
     """Base Pydantic schema for Profile model.
 
     This class serves as a foundation for all User-related schemas.
@@ -32,8 +32,8 @@ class ProfileBase(BasePydanticModel):
     birth_date: date
     gender: BasicString | None
 
-    @field_validator('birth_date')
-    def validate_birth_date(cls, value: date) -> date:
+    @field_validator("birth_date")
+    def validate_birth_date(self, value: date) -> date:
         """Validate that password and password_confirm match.
 
         Args:
@@ -43,37 +43,13 @@ class ProfileBase(BasePydanticModel):
 
         """
         if value > date.today():
-            raise ValueError('Birth date cannot be in the future.')
+            raise ValueError("Birth date cannot be in the future.")
         return value
 
 
-class ProfileRead(ProfileBase):
+class ReadProfileSchema(ProfileSchema):
     """Schema for reading Profile data."""
 
     user_id: int
     id: int
     created_at: datetime
-
-
-class ProfileCreate(ProfileBase):
-    """Schema for creating new profile."""
-
-
-class ProfileUpdate(ProfileBase):
-    """Schema for updating existing profile.
-
-    Notes:
-    - All fields are optional to allow partial updates
-    - Only changed fields need to be included in request
-    - Validation from base class still applies to provided fields
-
-    """
-
-    notifications_enabled: bool | None = None
-    interested_technologies: BasicString | None = None
-    location: BasicString | None = None
-    first_name: BasicString | None = None
-    last_name: BasicString | None = None
-    avatar_url: AnyUrl | None = None
-    birth_date: date | None = None
-    gender: BasicString | None = None

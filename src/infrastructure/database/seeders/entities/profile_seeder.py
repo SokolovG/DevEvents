@@ -3,7 +3,7 @@ from typing import override
 
 from sqlalchemy import select
 
-from src.infrastructure.database.models import Profile, Category
+from src.infrastructure.database.models import Category, Profile
 from src.infrastructure.database.models.enums import Gender
 from src.infrastructure.database.seeders.base_seeder import BaseSeeder
 from src.infrastructure.database.seeders.constants import NUM_TEST_DATA
@@ -23,7 +23,7 @@ class ProfileSeeder(BaseSeeder):
 
             for index in range(NUM_TEST_DATA):
                 first_name = self.faker.first_name()
-                random_category = random.choice(category_names)
+                random_category = random.choice(category_names)  # noqa
                 profile = Profile(
                     user_id=index,
                     first_name=first_name,
@@ -32,7 +32,7 @@ class ProfileSeeder(BaseSeeder):
                     interested_technologies=random_category,
                     location=self.faker.country(),
                     birth_date=self.faker.date_of_birth(),
-                    gender=random.choice(list(Gender)),
+                    gender=random.choice(list(Gender)),  # noqa
                 )
 
                 self.log(f"Created profile - {first_name}")

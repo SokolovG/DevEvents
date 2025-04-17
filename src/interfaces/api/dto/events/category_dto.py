@@ -1,13 +1,14 @@
-from src.interfaces.api.dto.base_dto import BasePydanticDTO
-from src.interfaces.api.schemas import CategoryCreate, CategoryRead, CategoryUpdate
+from src.interfaces.api.dto.base_dto import BasePydanticDTO, UpdatePydanticDTO
+from src.interfaces.api.schemas import CategorySchema, ReadCategorySchema
 
 
-class CategoryCreateDTO(BasePydanticDTO[CategoryCreate]):
+class CreateCategoryDTO(BasePydanticDTO[CategorySchema]):
     pass
 
-class CategoryUpdateDTO(BasePydanticDTO[CategoryUpdate]):
+
+class UpdateCategoryDTO(UpdatePydanticDTO[CategorySchema]):
     pass
 
-class CategoryReadDTO(BasePydanticDTO[CategoryRead]):
-    pass
 
+class ReadCategoryDTO(BasePydanticDTO[ReadCategorySchema]):
+    pass

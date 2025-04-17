@@ -1,6 +1,5 @@
 from typing import Final
 
-
 categories: Final[list[str]] = [
     "Frontend Development",
     "UI/UX Design",
@@ -23,7 +22,7 @@ locations: Final[list[str]] = [
     "Future Park Conference",
     "Startup Space Center",
     "Digital Port Complex",
-    "Tech Academy Hall"
+    "Tech Academy Hall",
 ]
 
 NUM_TEST_DATA: Final[int] = 10

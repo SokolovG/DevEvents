@@ -7,11 +7,11 @@ from src.infrastructure.database.seeders.entities.relationship_seeder import Rel
 from src.infrastructure.database.seeders.entities.user_seeder import UserSeeder
 
 __all__ = [
-   'CategorySeeder',
-    'LocationSeeder',
-    'UserSeeder',
-    'ProfileSeeder',
-    'EventSeeder',
-    'RelationshipSeeder',
-    'OrganizerSeeder'
+    "CategorySeeder",
+    "LocationSeeder",
+    "UserSeeder",
+    "ProfileSeeder",
+    "EventSeeder",
+    "RelationshipSeeder",
+    "OrganizerSeeder",
 ]

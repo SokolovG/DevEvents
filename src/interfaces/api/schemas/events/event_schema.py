@@ -3,16 +3,12 @@ from decimal import Decimal
 
 from pydantic import HttpUrl, ValidationInfo, field_validator
 
-from src.infrastructure.database.models.enums import (
-    Currency,
-    EventFormat,
-    EventStatus,
-)
+from src.infrastructure.database.models.enums import Currency, EventFormat, EventStatus
 from src.interfaces.api.schemas.base_dto import BasePydanticModel
 from src.interfaces.api.schemas.custom_types import BasicString, DescriptionField
 
 
-class EventBase(BasePydanticModel):
+class EventSchema(BasePydanticModel):
     """Base Pydantic schema for the Event model.
 
     This class serves as a foundation for all Event-related schemas.
@@ -47,8 +43,8 @@ class EventBase(BasePydanticModel):
     price: Decimal | None = None
     currency: Currency = Currency.USD
 
-    @field_validator('event_end_date')
-    def validate_end_date(cls, end_date: datetime, info: ValidationInfo) -> datetime:
+    @field_validator("event_end_date")
+    def validate_end_date(self, end_date: datetime, info: ValidationInfo) -> datetime:
         """Validate that event end date is after start date.
 
         Args:
@@ -63,13 +59,13 @@ class EventBase(BasePydanticModel):
 
         """
         data = info.data
-        start_date = data.get('event_start_date')
+        start_date = data.get("event_start_date")
         if start_date and end_date <= start_date:
-            raise ValueError('End date must be after start date.')
+            raise ValueError("End date must be after start date.")
         return end_date
 
-    @field_validator('registration_deadline')
-    def deadline_before_start(cls, deadline: datetime, info: ValidationInfo) -> datetime:
+    @field_validator("registration_deadline")
+    def deadline_before_start(self, deadline: datetime, info: ValidationInfo) -> datetime:
         """Validate that registration deadline is before event start.
 
         Args:
@@ -84,13 +80,13 @@ class EventBase(BasePydanticModel):
 
         """
         data = info.data
-        start_date = data.get('event_start_date')
+        start_date = data.get("event_start_date")
         if start_date and deadline >= start_date:
-            raise ValueError('Registration deadline must be before event start.')
+            raise ValueError("Registration deadline must be before event start.")
         return deadline
 
-    @field_validator('current_participants')
-    def validate_number_of_participants(cls, current: int, info: ValidationInfo) -> int:
+    @field_validator("current_participants")
+    def validate_number_of_participants(self, current: int, info: ValidationInfo) -> int:
         """Validate that current participants don't exceed maximum.
 
         Args:
@@ -105,13 +101,15 @@ class EventBase(BasePydanticModel):
 
         """
         data = info.data
-        max_number = data.get('max_participants')
+        max_number = data.get("max_participants")
         if max_number and current > max_number:
-            raise ValueError('Current participants cannot exceed maximum.')
+            raise ValueError("Current participants cannot exceed maximum.")
         return current
 
-    @field_validator('price')
-    def validate_price_currency(cls, price: Decimal | None, info: ValidationInfo) -> Decimal | None:
+    @field_validator("price")
+    def validate_price_currency(
+        self, price: Decimal | None, info: ValidationInfo
+    ) -> Decimal | None:
         """Validate price and currency relationship.
 
         Args:
@@ -128,14 +126,15 @@ class EventBase(BasePydanticModel):
         if price is None:
             return None
 
-        currency = info.data.get('currency', Currency.USD)
+        currency = info.data.get("currency", Currency.USD)
 
         if not currency:
-            raise ValueError('Currency must be specified when price is set')
+            raise ValueError("Currency must be specified when price is set")
 
         return price
 
-class EventRead(EventBase):
+
+class ReadEventSchema(EventSchema):
     """Schema for reading event data.
 
     Extends EventBase with additional fields needed for data retrieval.
@@ -156,7 +155,7 @@ class EventRead(EventBase):
     pub_date: datetime
 
 
-class EventCreate(EventBase):
+class CreateEventSchema(EventSchema):
     """Schema for creating new events.
 
     Extends EventBase with fields required for event creation.
@@ -168,7 +167,7 @@ class EventCreate(EventBase):
     organizer_id: int | None = None
 
 
-class EventUpdate(EventBase):
+class UpdateEventSchema(BasePydanticModel):
     """Schema for updating existing event.
 
     Notes:

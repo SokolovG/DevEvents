@@ -15,7 +15,4 @@ async def provide_event_logger() -> Logger:
     return getLogger("src.events")
 
 
-event_dependencies = {
-    "repo": Provide(provide_event_repo),
-    "logger": Provide(provide_event_logger)
-}
+event_dependencies = {"repo": Provide(provide_event_repo), "logger": Provide(provide_event_logger)}

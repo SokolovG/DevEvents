@@ -1,13 +1,14 @@
-from src.interfaces.api.dto.base_dto import BasePydanticDTO
-from src.interfaces.api.schemas import LocationCreate, LocationRead, LocationUpdate
+from src.interfaces.api.dto.base_dto import BasePydanticDTO, UpdatePydanticDTO
+from src.interfaces.api.schemas import LocationSchema, ReadLocationSchema
 
 
-class LocationCreateDTO(BasePydanticDTO[LocationCreate]):
+class CreateLocationDTO(BasePydanticDTO[LocationSchema]):
     pass
 
 
-class LocationUpdateDTO(BasePydanticDTO[LocationUpdate]):
+class UpdateLocationDTO(UpdatePydanticDTO[LocationSchema]):
     pass
 
-class LocationReadDTO(BasePydanticDTO[LocationRead]):
+
+class ReadLocationDTO(BasePydanticDTO[ReadLocationSchema]):
     pass

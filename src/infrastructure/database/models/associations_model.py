@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import Mapped, mapped_column
 
 from src.infrastructure.database.base import Base
 from src.infrastructure.database.models.enums import ParticipantStatus
@@ -15,6 +15,7 @@ class EventRegistration(Base):
         profile_id: ID of the registered profile
         event_id: ID of the event
         status: Current status of the registration
+
     """
 
     __tablename__ = "event_registrations"
@@ -27,9 +28,7 @@ class EventRegistration(Base):
         ForeignKey("events.id", use_alter=True, ondelete="CASCADE"),
         primary_key=True,
     )
-    status: Mapped[ParticipantStatus] = mapped_column(
-        default=ParticipantStatus.REGISTERED
-    )
+    status: Mapped[ParticipantStatus] = mapped_column(default=ParticipantStatus.REGISTERED)
 
 
 class EventOrganizers(Base):
@@ -40,6 +39,7 @@ class EventOrganizers(Base):
     Attributes:
         organizer_id: ID of the organizer
         event_id: ID of the event
+
     """
 
     __tablename__ = "event_organizers"

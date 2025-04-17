@@ -7,7 +7,7 @@ from src.interfaces.api.schemas.base_dto import BasePydanticModel
 from src.interfaces.api.schemas.custom_types import BasicString, DescriptionField
 
 
-class OrganizerBase(BasePydanticModel):
+class OrganizerSchema(BasePydanticModel):
     """Base Pydantic schema for the Organizer model.
 
     This class serves as a foundation for all organizer-related schemas.
@@ -25,7 +25,7 @@ class OrganizerBase(BasePydanticModel):
     logo_url: AnyUrl | None = None
 
 
-class OrganizerRead(OrganizerBase):
+class ReadOrganizerSchema(OrganizerSchema):
     """Schema for reading organizer data."""
 
     id: int
@@ -33,30 +33,5 @@ class OrganizerRead(OrganizerBase):
     verified: bool
     created_at: datetime
     rating: Decimal = Field(
-        default=0,
-        ge=0,
-        le=5,
-        decimal_places=2,
-        description="Organizer rating from 0 to 5"
+        default=0, ge=0, le=5, decimal_places=2, description="Organizer rating from 0 to 5"
     )
-
-
-class OrganizerCreate(OrganizerBase):
-    """Schema for creating new organizer."""
-
-
-class OrganizerUpdate(OrganizerBase):
-    """Schema for updating existing organizer.
-
-    Notes:
-    - All fields are optional to allow partial updates
-    - Only changed fields need to be included in request
-    - Validation from base class still applies to provided fields
-
-    """
-
-    website: HttpUrl | None = None
-    contact: BasicString | None = None
-    name: BasicString | None = None
-    description: DescriptionField | None = None
-    logo_url: AnyUrl | None = None

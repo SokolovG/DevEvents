@@ -1,13 +1,14 @@
-from src.interfaces.api.dto.base_dto import BasePydanticDTO
-from src.interfaces.api.schemas import EventCreate, EventRead, EventUpdate
+from src.interfaces.api.dto.base_dto import BasePydanticDTO, UpdatePydanticDTO
+from src.interfaces.api.schemas import CreateEventSchema, ReadEventSchema, UpdateEventSchema
 
 
-class EventCreateDTO(BasePydanticDTO[EventCreate]):
+class CreateEventDTO(BasePydanticDTO[CreateEventSchema]):
     pass
 
 
-class EventUpdateDTO(BasePydanticDTO[EventUpdate]):
+class UpdateEventDTO(UpdatePydanticDTO[UpdateEventSchema]):
     pass
 
-class EventReadDTO(BasePydanticDTO[EventRead]):
+
+class ReadEventDTO(BasePydanticDTO[ReadEventSchema]):
     pass

@@ -4,17 +4,12 @@ from typing import TYPE_CHECKING
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.infrastructure.database.base import (
-    Base,
-    BasicNullString,
-    BasicString,
-    BoolTrue,
-)
+from src.infrastructure.database.base import Base, BasicNullString, BasicString, BoolTrue
 from src.infrastructure.database.models.enums import Gender
 
 if TYPE_CHECKING:
-    from .user_model import User
     from .event_model import Event
+    from .user_model import User
 
 
 class Profile(Base):

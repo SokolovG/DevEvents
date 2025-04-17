@@ -2,11 +2,7 @@ from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import Mapped, relationship
 
-from src.infrastructure.database.base import (
-    Base,
-    BasicString,
-    IndexedString,
-)
+from src.infrastructure.database.base import Base, BasicString, IndexedString
 
 if TYPE_CHECKING:
     from .event_model import Event
@@ -18,7 +14,7 @@ class Location(Base):
     Represents physical locations where events can take place.
     """
 
-    __tablename__ = 'locations'
+    __tablename__ = "locations"
 
     # String fields
     name: Mapped[BasicString]
@@ -28,7 +24,5 @@ class Location(Base):
 
     # Relationships
     events: Mapped["Event"] = relationship(
-        'Event',
-        back_populates='location',
-        cascade='all, delete-orphan'
+        "Event", back_populates="location", cascade="all, delete-orphan"
     )

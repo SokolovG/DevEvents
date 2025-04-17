@@ -1,13 +1,14 @@
-from src.interfaces.api.dto.base_dto import BasePydanticDTO
-from src.interfaces.api.schemas import ProfileCreate, ProfileRead, ProfileUpdate
+from src.interfaces.api.dto.base_dto import BasePydanticDTO, UpdatePydanticDTO
+from src.interfaces.api.schemas import ProfileSchema, ReadProfileSchema
 
 
-class ProfileCreateDTO(BasePydanticDTO[ProfileCreate]):
+class ReadProfileDTO(BasePydanticDTO[ReadProfileSchema]):
     pass
 
-class ProfileUpdateDTO(BasePydanticDTO[ProfileUpdate]):
+
+class CreateProfileDTO(BasePydanticDTO[ProfileSchema]):
     pass
 
-class ProfileReadDTO(BasePydanticDTO[ProfileRead]):
-    pass
 
+class UpdateProfileDTO(UpdatePydanticDTO[ProfileSchema]):
+    pass

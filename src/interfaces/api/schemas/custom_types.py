@@ -14,9 +14,8 @@ BasicString = Annotated[
     Field(
         min_length=MIN_BASIC_LENGTH,
         max_length=MAX_BASIC_LENGTH,
-        description='Standard text field with length validation',
-
-    )
+        description="Standard text field with length validation",
+    ),
 ]
 
 DescriptionField = Annotated[
@@ -24,8 +23,8 @@ DescriptionField = Annotated[
     Field(
         min_length=MIN_BASIC_LENGTH,
         max_length=MAX_DESCRIPTION_LENGTH,
-        description='Extended text field for detailed content',
-    )
+        description="Extended text field for detailed content",
+    ),
 ]
 
 PasswordString = Annotated[
@@ -33,6 +32,6 @@ PasswordString = Annotated[
     Field(
         min_length=PASSWORD_MIN_LENGTH,
         max_length=MAX_BASIC_LENGTH,
-        description='Password field with length validation',
-    )
+        description="Password field with length validation",
+    ),
 ]

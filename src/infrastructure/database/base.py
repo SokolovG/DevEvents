@@ -1,17 +1,10 @@
 from datetime import datetime
 from typing import Annotated
 
-from sqlalchemy import Boolean, Integer, String, func, MetaData
-from sqlalchemy.orm import (
-    DeclarativeBase,
-    Mapped,
-    mapped_column,
-)
+from sqlalchemy import Boolean, Integer, MetaData, String, func
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from src.infrastructure.database.constants import (
-    MAX_BASIC_LENGTH,
-    MAX_DESCRIPTION_LENGTH,
-)
+from src.infrastructure.database.constants import MAX_BASIC_LENGTH, MAX_DESCRIPTION_LENGTH
 
 
 class BaseModel(DeclarativeBase):
@@ -41,14 +34,10 @@ class Base(BaseModel):
 # Basic string with max_length limit.
 BasicString = Annotated[str, mapped_column(String(length=MAX_BASIC_LENGTH))]
 # Basic string with max_length limit and nullable=True.
-BasicNullString = Annotated[
-    str, mapped_column(String(length=MAX_BASIC_LENGTH), nullable=True)
-]
+BasicNullString = Annotated[str, mapped_column(String(length=MAX_BASIC_LENGTH), nullable=True)]
 
 # Indexed string with max_length limit.
-IndexedString = Annotated[
-    str, mapped_column(String(length=MAX_BASIC_LENGTH), index=True)
-]
+IndexedString = Annotated[str, mapped_column(String(length=MAX_BASIC_LENGTH), index=True)]
 
 # Indexed string with max_length limit und unique=True.
 IndexedUniqueString = Annotated[

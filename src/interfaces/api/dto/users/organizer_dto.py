@@ -1,13 +1,18 @@
-from src.interfaces.api.dto.base_dto import BasePydanticDTO
-from src.interfaces.api.schemas import OrganizerCreate, OrganizerRead, OrganizerUpdate
+from litestar.dto import DTOConfig
+
+from src.interfaces.api.dto.base_dto import BasePydanticDTO, UpdatePydanticDTO
+from src.interfaces.api.schemas import OrganizerSchema, ReadOrganizerSchema
 
 
-class OrganizerCreateDTO(BasePydanticDTO[OrganizerCreate]):
+class ReadOrganizerDTO(BasePydanticDTO[ReadOrganizerSchema]):
     pass
 
-class OrganizerUpdateDTO(BasePydanticDTO[OrganizerUpdate]):
-    pass
 
-class OrganizerReadDTO(BasePydanticDTO[OrganizerRead]):
-    pass
+class CreateOrganizerDTO(BasePydanticDTO[OrganizerSchema]):
+    __config__ = DTOConfig(exclude={"id", "user_id", "verified", "created_at", "rating"})
 
+
+class UpdateOrganizerDTO(UpdatePydanticDTO[OrganizerSchema]):
+    __config__ = DTOConfig(
+        exclude={"id", "user_id", "verified", "created_at", "rating"},
+    )

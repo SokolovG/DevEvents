@@ -1,11 +1,7 @@
 from datetime import timedelta
 from typing import override
 
-from src.infrastructure.database.models.enums import (
-    EventFormat,
-    EventStatus,
-    Currency,
-)
+from src.infrastructure.database.models.enums import Currency, EventFormat, EventStatus
 from src.infrastructure.database.models.event_model import Event
 from src.infrastructure.database.seeders.base_seeder import BaseSeeder
 from src.infrastructure.database.seeders.constants import NUM_TEST_DATA
@@ -49,9 +45,7 @@ class EventSeeder(BaseSeeder):
                     format=self.faker.random_element(EventFormat),
                     status=self.faker.random_element(EventStatus),
                     currency=(
-                        self.faker.random_element(Currency)
-                        if price is not None
-                        else Currency.USD
+                        self.faker.random_element(Currency) if price is not None else Currency.USD
                     ),
                     # Boolean fields
                     is_published=self.faker.boolean(),
@@ -67,9 +61,7 @@ class EventSeeder(BaseSeeder):
                     timezone=self.faker.timezone(),
                     # Numeric fields
                     current_participants=current_participants,
-                    max_participants=self.faker.random_int(
-                        min=current_participants, max=500
-                    ),
+                    max_participants=self.faker.random_int(min=current_participants, max=500),
                     price=price,
                 )
 

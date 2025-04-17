@@ -1,4 +1,5 @@
-from pydantic import BaseModel as _BaseModel, ConfigDict
+from pydantic import BaseModel as _BaseModel
+from pydantic import ConfigDict
 
 
 class BasePydanticModel(_BaseModel):
@@ -14,5 +15,5 @@ class BasePydanticModel(_BaseModel):
         from_attributes=True,
         use_enum_values=True,
         str_strip_whitespace=True,
-        validate_assignment=True
+        validate_assignment=True,
     )

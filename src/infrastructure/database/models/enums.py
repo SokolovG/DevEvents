@@ -8,11 +8,12 @@ class EventFormat(str, Enum):
         ONLINE: Online event format
         OFFLINE: Offline event format
         HYBRID: Hybrid event format
+
     """
 
-    ONLINE = 'online'
-    OFFLINE = 'offline'
-    HYBRID = 'hybrid'
+    ONLINE = "online"
+    OFFLINE = "offline"
+    HYBRID = "hybrid"
 
 
 class EventStatus(str, Enum):
@@ -23,12 +24,13 @@ class EventStatus(str, Enum):
         ONGOING: Event is currently ongoing
         COMPLETED: Event has been completed
         CANCELLED: Event was cancelled
+
     """
 
-    PLANNED = 'planned'
-    ONGOING = 'ongoing'
-    COMPLETED = 'completed'
-    CANCELLED = 'cancelled'
+    PLANNED = "planned"
+    ONGOING = "ongoing"
+    COMPLETED = "completed"
+    CANCELLED = "cancelled"
 
 
 class Currency(str, Enum):
@@ -38,11 +40,12 @@ class Currency(str, Enum):
         USD: United States Dollar
         EUR: Euro
         RUB: Russian Ruble
+
     """
 
-    USD = 'USD'
-    EUR = 'EUR'
-    RUB = 'RUB'
+    USD = "USD"
+    EUR = "EUR"
+    RUB = "RUB"
 
 
 class ParticipantStatus(str, Enum):
@@ -55,14 +58,15 @@ class ParticipantStatus(str, Enum):
         CANCELLED: Registration was cancelled
         ATTENDED: Participant attended the event
         NO_SHOW: Participant didn't show up
+
     """
 
-    REGISTERED = 'registered'
-    CONFIRMED = 'confirmed'
-    WAITLISTED = 'waitlisted'
-    CANCELLED = 'cancelled'
-    ATTENDED = 'attended'
-    NO_SHOW = 'no_show'
+    REGISTERED = "registered"
+    CONFIRMED = "confirmed"
+    WAITLISTED = "waitlisted"
+    CANCELLED = "cancelled"
+    ATTENDED = "attended"
+    NO_SHOW = "no_show"
 
 
 class Gender(str, Enum):
@@ -71,7 +75,8 @@ class Gender(str, Enum):
     Attributes:
         MALE: Male gender
         FEMALE: Female gender
+
     """
 
-    MALE = 'male'
-    FEMALE = 'female'
+    MALE = "male"
+    FEMALE = "female"

@@ -7,7 +7,7 @@ from src.interfaces.api.schemas.base_dto import BasePydanticModel
 from src.interfaces.api.schemas.custom_types import BasicString, DescriptionField
 
 
-class CategoryBase(BasePydanticModel):
+class CategorySchema(BasePydanticModel):
     """Base Pydantic schema for the Category model.
 
     This class serves as a foundation for all Category-related schemas.
@@ -23,14 +23,14 @@ class CategoryBase(BasePydanticModel):
     description: DescriptionField
 
 
-class CategoryRead(CategoryBase):
+class ReadCategorySchema(CategorySchema):
     """Schema for reading category data."""
 
     id: int
     created_at: datetime
 
 
-class CategoryCreate(CategoryBase):
+class CreateCategorySchema(CategorySchema):
     """Schema for creating new categories with validation.
 
     Extends CategoryBase with additional validation:
@@ -43,7 +43,7 @@ class CategoryCreate(CategoryBase):
     """
 
     @field_validator("slug")
-    def validate_slug(cls, value: str) -> str:
+    def validate_slug(self, value: str) -> str:
         """Validate and transform slug to lowercase.
 
         Args:
@@ -68,23 +68,3 @@ class CategoryCreate(CategoryBase):
         if self.name.lower() == self.slug:
             raise ValueError("Slug should not be identical to the name.")
         return self
-
-
-class CategoryUpdate(CategoryBase):
-    """Schema for updating existing categories.
-
-    Extends CategoryBase by making all fields optional:
-    - name: Optional new category name
-    - slug: Optional new URL-friendly identifier
-    - description: Optional new description
-
-    Notes:
-    - All fields are optional to allow partial updates
-    - Only changed fields need to be included in request
-    - Validation from base class still applies to provided fields
-
-    """
-
-    name: BasicString | None = None
-    slug: BasicString | None = None
-    description: DescriptionField | None = None

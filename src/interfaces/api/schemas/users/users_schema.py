@@ -6,7 +6,7 @@ from src.interfaces.api.schemas.base_dto import BasePydanticModel
 from src.interfaces.api.schemas.custom_types import BasicString, PasswordString
 
 
-class UserBase(BasePydanticModel):
+class UserSchema(BasePydanticModel):
     """Base Pydantic schema for User model.
 
     This class serves as a foundation for all User-related schemas.
@@ -21,7 +21,7 @@ class UserBase(BasePydanticModel):
     email: EmailStr
 
 
-class UserRead(UserBase):
+class ReadUserSchema(UserSchema):
     """Schema for reading user data."""
 
     id: int
@@ -30,7 +30,7 @@ class UserRead(UserBase):
     is_active: bool
 
 
-class UserCreate(UserBase):
+class CreateUserSchema(UserSchema):
     """Schema for creating new user.
 
     Extends UserBase with additional validation:
@@ -43,23 +43,24 @@ class UserCreate(UserBase):
     password: PasswordString
     password_confirm: PasswordString
 
-    @field_validator('password_confirm')
-    def passwords_match(cls, value: str, info: ValidationInfo) -> str:
+    @field_validator("password_confirm")
+    def passwords_match(self, value: str, info: ValidationInfo) -> str:
         """Validate that password and password_confirm match.
 
         Args:
             value: password_confirm
+            info: данные
         Returns:
             password_confirm if validated
 
         """
         data = info.data
-        if 'password' in data and value != data['password']:
-            raise ValueError('Passwords do not match.')
+        if "password" in data and value != data["password"]:
+            raise ValueError("Passwords do not match.")
         return value
 
 
-class UserUpdate(UserBase):
+class UpdateUserSchema(BasePydanticModel):
     """Schema for updating existing user.
 
     Notes:

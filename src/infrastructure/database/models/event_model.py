@@ -14,17 +14,13 @@ from src.infrastructure.database.base import (
     DescriptionString,
     IndexedString,
 )
-from src.infrastructure.database.models.enums import (
-    Currency,
-    EventFormat,
-    EventStatus,
-)
+from src.infrastructure.database.models.enums import Currency, EventFormat, EventStatus
 
 if TYPE_CHECKING:
-    from .profile_model import Profile
-    from .organizer_model import Organizer
-    from .location_model import Location
     from .category_model import Category
+    from .location_model import Location
+    from .organizer_model import Organizer
+    from .profile_model import Profile
 
 
 class Event(Base):
@@ -40,9 +36,7 @@ class Event(Base):
     description: Mapped[DescriptionString]
 
     # Foreign Keys
-    organizer_id: Mapped[int] = mapped_column(
-        ForeignKey("organizers.id", use_alter=True)
-    )
+    organizer_id: Mapped[int] = mapped_column(ForeignKey("organizers.id", use_alter=True))
     location_id: Mapped[int] = mapped_column(
         ForeignKey("locations.id", use_alter=True), nullable=True
     )

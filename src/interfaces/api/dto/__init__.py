@@ -1,47 +1,43 @@
 from src.interfaces.api.dto.events.category_dto import (
-    CategoryCreateDTO,
-    CategoryReadDTO,
-    CategoryUpdateDTO,
+    CreateCategoryDTO,
+    ReadCategoryDTO,
+    UpdateCategoryDTO,
 )
-from src.interfaces.api.dto.events.event_dto import (
-    EventCreateDTO,
-    EventReadDTO,
-    EventUpdateDTO,
-)
+from src.interfaces.api.dto.events.event_dto import CreateEventDTO, ReadEventDTO, UpdateEventDTO
 from src.interfaces.api.dto.events.location_dto import (
-    LocationCreateDTO,
-    LocationReadDTO,
-    LocationUpdateDTO,
+    CreateLocationDTO,
+    ReadLocationDTO,
+    UpdateLocationDTO,
 )
 from src.interfaces.api.dto.users.organizer_dto import (
-    OrganizerCreateDTO,
-    OrganizerReadDTO,
-    OrganizerUpdateDTO,
+    CreateOrganizerDTO,
+    ReadOrganizerDTO,
+    UpdateOrganizerDTO,
 )
 from src.interfaces.api.dto.users.profile_dto import (
-    ProfileCreateDTO,
-    ProfileReadDTO,
-    ProfileUpdateDTO,
+    CreateProfileDTO,
+    ReadProfileDTO,
+    UpdateProfileDTO,
 )
-from src.interfaces.api.dto.users.user_dto import UserCreateDTO, UserReadDTO, UserUpdateDTO
+from src.interfaces.api.dto.users.user_dto import CreateUserDTO, ReadUserDTO, UpdateUserDTO
 
 __all__ = [
-    "UserCreateDTO",
-    "UserUpdateDTO",
-    "UserReadDTO",
-    "OrganizerReadDTO",
-    "OrganizerUpdateDTO",
-    "OrganizerCreateDTO",
-    "ProfileCreateDTO",
-    "ProfileUpdateDTO",
-    "ProfileReadDTO",
-    "EventUpdateDTO",
-    "EventCreateDTO",
-    "EventReadDTO",
-    "CategoryCreateDTO",
-    "CategoryUpdateDTO",
-    "CategoryReadDTO",
-    "LocationUpdateDTO",
-    "LocationCreateDTO",
-    "LocationReadDTO",
+    "CreateCategoryDTO",
+    "ReadCategoryDTO",
+    "UpdateCategoryDTO",
+    "ReadEventDTO",
+    "UpdateEventDTO",
+    "CreateEventDTO",
+    "CreateLocationDTO",
+    "UpdateLocationDTO",
+    "ReadLocationDTO",
+    "CreateOrganizerDTO",
+    "ReadOrganizerDTO",
+    "UpdateOrganizerDTO",
+    "CreateProfileDTO",
+    "ReadProfileDTO",
+    "UpdateProfileDTO",
+    "CreateUserDTO",
+    "ReadUserDTO",
+    "UpdateUserDTO",
 ]

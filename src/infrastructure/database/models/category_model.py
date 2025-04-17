@@ -4,7 +4,7 @@ from src.infrastructure.database.base import (
     Base,
     BasicString,
     DescriptionString,
-    IndexedUniqueString
+    IndexedUniqueString,
 )
 
 
@@ -14,7 +14,7 @@ class Category(Base):
     Represents different types/categories of events.
     """
 
-    __tablename__ = 'categories'
+    __tablename__ = "categories"
 
     # String fields
     name: Mapped[BasicString]
@@ -22,4 +22,4 @@ class Category(Base):
     description: Mapped[DescriptionString]
 
     # Relationships
-    events = relationship('Event', back_populates='category')
+    events = relationship("Event", back_populates="category")

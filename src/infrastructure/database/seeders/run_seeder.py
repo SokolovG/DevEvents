@@ -2,16 +2,17 @@ import asyncio
 
 from src.infrastructure.database.config import get_sqlalchemy_config
 from src.infrastructure.database.seeders.entities import (
-    LocationSeeder,
     CategorySeeder,
-    UserSeeder,
+    EventSeeder,
+    LocationSeeder,
     OrganizerSeeder,
     ProfileSeeder,
-    EventSeeder,
     RelationshipSeeder,
+    UserSeeder,
 )
 
 sqlalchemy_config = get_sqlalchemy_config()
+
 
 async def run() -> None:
     """Run all seeders."""

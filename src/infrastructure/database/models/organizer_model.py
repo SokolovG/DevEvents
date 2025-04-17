@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Numeric, CheckConstraint
+from sqlalchemy import CheckConstraint, ForeignKey, Numeric
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.infrastructure.database.base import (

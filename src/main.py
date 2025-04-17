@@ -5,15 +5,13 @@ from litestar.logging import LoggingConfig
 from sqladmin import ModelView
 from sqladmin_litestar_plugin import SQLAdminPlugin
 
-from src.infrastructure.database.config import get_sqlalchemy_plugin, get_sqlalchemy_config
+from src.infrastructure.database.config import get_sqlalchemy_config, get_sqlalchemy_plugin
 from src.infrastructure.database.models.event_model import Event
 from src.interfaces.api.routes.base_routes import event_router
 from src.interfaces.cli.commands import CLIPlugin
 
 cors_config = CORSConfig(
-    allow_origins=["http://localhost:5173"],
-    allow_methods=['*'],
-    allow_headers=['*']
+    allow_origins=["http://localhost:5173"], allow_methods=["*"], allow_headers=["*"]
 )
 
 
@@ -30,8 +28,10 @@ logging_config = LoggingConfig(
     log_exceptions="always",
 )
 
-class EventAdmin(ModelView, model=Event):
+
+class EventAdmin(ModelView, model=Event):  # type: ignore
     column_list = [Event.name, Event.price, Event.description]
+
 
 sqlalchemy_plugin = get_sqlalchemy_plugin()
 sqlalchemy_config = get_sqlalchemy_config()
@@ -41,8 +41,8 @@ app = Litestar(
     plugins=[sqlalchemy_plugin, admin, CLIPlugin()],
     debug=True,
     cors_config=cors_config,
-    logging_config=logging_config
+    logging_config=logging_config,
 )
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)

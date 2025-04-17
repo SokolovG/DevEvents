@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/python-3.12-blue.svg)
 ![Litestar](https://img.shields.io/badge/litestar-2.14.0-blue.svg)
-![Svelte](https://img.shields.io/badge/svelte-latest-orange.svg)
 
 DevEvents is a comprehensive platform that aggregates and manages tech conferences and developer meetups. Our mission is
 to help developers stay updated about upcoming tech events and provide organizers with tools to promote their meetups
@@ -28,11 +27,6 @@ effectively.
 - **Migration**: Alembic
 - **Admin Panel**: SQLAdmin
 - **Packet manager**: Uv
-
-### Frontend
-
-- **Framework**: Svelte
-- **Styling**: To be determined (TailwindCSS planned)
 
 ### DevOps
 
@@ -186,7 +180,7 @@ This project uses:
 To check your code:
 
 ```bash
-# Format and linting code 
+# Format and linting code
 ruff backend/
 
 # Type checking
